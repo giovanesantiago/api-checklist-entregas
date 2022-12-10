@@ -1,22 +1,23 @@
 package entregas.api.checklist.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+
 
 public class Cliente {
 
     private Long id;
     private String nome;
     private String moto;
-    private Integer chassi;
-    private Date dataVenda;
-    private Date dataEntrega;
+    private String chassi;
+    private LocalDate dataVenda;
+    private LocalDate dataEntrega;
     private ArrayList<Tarefas> tarefas;
 
     public Cliente() {
     }
 
-    public Cliente(Long id, String nome, String moto, Integer chassi) {
+    public Cliente(Long id, String nome, String moto, String chassi) {
         this.id = id;
         this.nome = nome;
         this.moto = moto;
@@ -48,27 +49,27 @@ public class Cliente {
         this.moto = moto;
     }
 
-    public Integer getChassi() {
+    public String getChassi() {
         return chassi;
     }
 
-    public void setChassi(Integer chassi) {
+    public void setChassi(String chassi) {
         this.chassi = chassi;
     }
 
-    public Date getDataVenda() {
+    public LocalDate getDataVenda() {
         return dataVenda;
     }
 
-    public void setDataVenda(Date dataVenda) {
+    public void setDataVenda(LocalDate dataVenda) {
         this.dataVenda = dataVenda;
     }
 
-    public Date getDataEntrega() {
+    public LocalDate getDataEntrega() {
         return dataEntrega;
     }
 
-    public void setDataEntrega(Date dataEntrega) {
+    public void setDataEntrega(LocalDate dataEntrega) {
         this.dataEntrega = dataEntrega;
     }
 
@@ -93,29 +94,31 @@ public class Cliente {
                 '}';
     }
 
+
+    // Metodo para criar lista de Tarefas assim que criar um novo usuario
     public ArrayList<Tarefas> createListaTarefas(Long idCliente) {
         ArrayList<Tarefas> listTarefas = new ArrayList<Tarefas>();
-        Tarefas prosposta = new Tarefas(idCliente, "Proposta", false, false);
+        Tarefas prosposta = new Tarefas(idCliente, "Proposta", false, false, "");
         listTarefas.add(prosposta);
-        Tarefas notaFiscal = new Tarefas(idCliente, "Nota Fiscal", false, false);
+        Tarefas notaFiscal = new Tarefas(idCliente, "Nota Fiscal", false, false, "");
         listTarefas.add(notaFiscal);
-        Tarefas solitacaoEstoque = new Tarefas(idCliente, "Solitacao Estoque", false, false);
+        Tarefas solitacaoEstoque = new Tarefas(idCliente, "Solitacao Estoque", false, false, "");
         listTarefas.add(solitacaoEstoque);
-        Tarefas bimEgravame = new Tarefas(idCliente, "Bim e Gravame", false, false);
+        Tarefas bimEgravame = new Tarefas(idCliente, "Bim e Gravame", false, false, "");
         listTarefas.add(bimEgravame);
-        Tarefas motoLoja = new Tarefas(idCliente, "Moto na Loja", false, false);
+        Tarefas motoLoja = new Tarefas(idCliente, "Moto na Loja", false, false, "");
         listTarefas.add(motoLoja);
-        Tarefas bateria = new Tarefas(idCliente, "Bateria Ativa", false, false);
+        Tarefas bateria = new Tarefas(idCliente, "Bateria Ativa", false, false, "");
         listTarefas.add(bateria);
-        Tarefas acessorios = new Tarefas(idCliente, "Acessorios", false, false);
+        Tarefas acessorios = new Tarefas(idCliente, "Acessorios", false, false, "");
         listTarefas.add(acessorios);
-        Tarefas teste = new Tarefas(idCliente, "Teste fun. da moto", false, false);
+        Tarefas teste = new Tarefas(idCliente, "Teste fun. da moto", false, false, "");
         listTarefas.add(teste);
-        Tarefas manual = new Tarefas(idCliente, "Manual Preenchido", false, false);
+        Tarefas manual = new Tarefas(idCliente, "Manual Preenchido", false, false, "");
         listTarefas.add(manual);
-        Tarefas placa = new Tarefas(idCliente, "Placa", false, false);
+        Tarefas placa = new Tarefas(idCliente, "Placa", false, false, "");
         listTarefas.add(placa);
-        Tarefas termoEntrega = new Tarefas(idCliente, "Termo de Entrega", false, false);
+        Tarefas termoEntrega = new Tarefas(idCliente, "Termo de Entrega", false, false, "");
         listTarefas.add(termoEntrega);
 
         return listTarefas;
