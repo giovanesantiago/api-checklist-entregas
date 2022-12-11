@@ -2,6 +2,7 @@ package entregas.api.checklist.model;
 
 public class Tarefas {
 
+    private int idTarefa;
     private Long idCliente;
     private String nome;
     private Boolean processo;
@@ -11,12 +12,21 @@ public class Tarefas {
     public Tarefas() {
     }
 
-    public Tarefas(Long idCliente, String nome, Boolean processo, Boolean finalizado, String obs) {
+    public Tarefas(int idTarefa,Long idCliente, String nome, Boolean processo, Boolean finalizado, String obs) {
+        this.idTarefa = idTarefa;
         this.idCliente = idCliente;
         this.nome = nome;
         this.processo = processo;
         this.finalizado = finalizado;
         this.obs = obs;
+    }
+
+    public int getIdTarefa() {
+        return idTarefa;
+    }
+
+    public void setIdTarefa(int idTarefa) {
+        this.idTarefa = idTarefa;
     }
 
     public Long getIdCliente() {
@@ -62,7 +72,8 @@ public class Tarefas {
     @Override
     public String toString() {
         return "Tarefas{" +
-                "idCliente=" + idCliente +
+                "idTarefa=" + idTarefa +
+                ", idCliente=" + idCliente +
                 ", nome='" + nome + '\'' +
                 ", processo=" + processo +
                 ", finalizado=" + finalizado +

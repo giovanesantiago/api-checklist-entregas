@@ -212,6 +212,10 @@ public class TestCliente {
         assertNull(service.findById(3L).getDataVenda());
         assertNull(service.findById(3L).getDataEntrega());
 
+
+        System.out.println(cliente1.toString());
+        System.out.println(cliente2.toString());
+        assertNotEquals(cliente1, cliente2);
     }
 
 }
