@@ -22,7 +22,8 @@ public class ClienteService {
 
     // Adicionar novo Cliente
     public String createCliente(Cliente cliente) {
-        Cliente clienteAdd = cliente;
+        Cliente clienteAdd = new Cliente(cliente.getId(), cliente.getNome(),
+                cliente.getMoto(), cliente.getChassi());
         listaClientes.add(clienteAdd);
         return "ok";
     }

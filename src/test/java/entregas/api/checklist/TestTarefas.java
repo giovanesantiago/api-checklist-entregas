@@ -1,7 +1,7 @@
 package entregas.api.checklist;
 
 import entregas.api.checklist.model.Cliente;
-import entregas.api.checklist.model.Tarefas;
+import entregas.api.checklist.model.Tarefa;
 import entregas.api.checklist.service.ClienteService;
 import entregas.api.checklist.service.TarefaService;
 import org.junit.jupiter.api.Test;
@@ -51,7 +51,7 @@ public class TestTarefas {
         // Fazendo um for para testar todas as tarefas
         for (int i = 0; i < 11; i++) {
             idCliente = 3L;
-            Tarefas newtarefa = serviceTarefas.findById(i+1, idCliente);
+            Tarefa newtarefa = serviceTarefas.findById(i+1, idCliente);
             // Editando processo
             newtarefa.setProcesso(true);
             serviceTarefas.editTarefa(i+1, idCliente, newtarefa);
@@ -77,7 +77,7 @@ public class TestTarefas {
         // Fazendo um for para testar todas as tarefas
         for (int i = 0; i < 11; i++) {
             idCliente = 4L;
-            Tarefas newtarefa = serviceTarefas.findById(i+1, idCliente);
+            Tarefa newtarefa = serviceTarefas.findById(i+1, idCliente);
             // Editando processo
             newtarefa.setProcesso(true);
             serviceTarefas.editTarefa(i+1, idCliente, newtarefa);

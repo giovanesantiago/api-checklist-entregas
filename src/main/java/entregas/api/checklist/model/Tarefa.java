@@ -1,6 +1,6 @@
 package entregas.api.checklist.model;
 
-public class Tarefas {
+public class Tarefa {
 
     private int idTarefa;
     private Long idCliente;
@@ -9,10 +9,10 @@ public class Tarefas {
     private Boolean finalizado;
     private String obs;
 
-    public Tarefas() {
+    public Tarefa() {
     }
 
-    public Tarefas(int idTarefa,Long idCliente, String nome, Boolean processo, Boolean finalizado, String obs) {
+    public Tarefa(int idTarefa, Long idCliente, String nome, Boolean processo, Boolean finalizado, String obs) {
         this.idTarefa = idTarefa;
         this.idCliente = idCliente;
         this.nome = nome;

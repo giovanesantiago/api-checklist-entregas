@@ -12,7 +12,7 @@ public class Cliente {
     private String chassi;
     private LocalDate dataVenda;
     private LocalDate dataEntrega;
-    private ArrayList<Tarefas> tarefas;
+    private ArrayList<Tarefa> tarefas;
 
     public Cliente() {
     }
@@ -73,11 +73,11 @@ public class Cliente {
         this.dataEntrega = dataEntrega;
     }
 
-    public ArrayList<Tarefas> getTarefas() {
+    public ArrayList<Tarefa> getTarefas() {
         return tarefas;
     }
 
-    public void setTarefas(ArrayList<Tarefas> tarefas) {
+    public void setTarefas(ArrayList<Tarefa> tarefas) {
         this.tarefas = tarefas;
     }
 
@@ -96,29 +96,29 @@ public class Cliente {
 
 
     // Metodo para criar lista de Tarefas assim que criar um usuario
-    public ArrayList<Tarefas> createListaTarefas(Long idCliente) {
-        ArrayList<Tarefas> listTarefas = new ArrayList<Tarefas>();
-        Tarefas prosposta = new Tarefas(1, idCliente, "Proposta", false, false, "");
+    public ArrayList<Tarefa> createListaTarefas(Long idCliente) {
+        ArrayList<Tarefa> listTarefas = new ArrayList<Tarefa>();
+        Tarefa prosposta = new Tarefa(1, idCliente, "Proposta", false, false, "");
         listTarefas.add(prosposta);
-        Tarefas notaFiscal = new Tarefas(2 ,idCliente, "Nota Fiscal", false, false, "");
+        Tarefa notaFiscal = new Tarefa(2 ,idCliente, "Nota Fiscal", false, false, "");
         listTarefas.add(notaFiscal);
-        Tarefas solitacaoEstoque = new Tarefas(3 ,idCliente, "Solitacao Estoque", false, false, "");
+        Tarefa solitacaoEstoque = new Tarefa(3 ,idCliente, "Solitacao Estoque", false, false, "");
         listTarefas.add(solitacaoEstoque);
-        Tarefas bimEgravame = new Tarefas(4, idCliente, "Bim e Gravame", false, false, "");
+        Tarefa bimEgravame = new Tarefa(4, idCliente, "Bim e Gravame", false, false, "");
         listTarefas.add(bimEgravame);
-        Tarefas motoLoja = new Tarefas(5 ,idCliente, "Moto na Loja", false, false, "");
+        Tarefa motoLoja = new Tarefa(5 ,idCliente, "Moto na Loja", false, false, "");
         listTarefas.add(motoLoja);
-        Tarefas bateria = new Tarefas(6 ,idCliente, "Bateria Ativa", false, false, "");
+        Tarefa bateria = new Tarefa(6 ,idCliente, "Bateria Ativa", false, false, "");
         listTarefas.add(bateria);
-        Tarefas acessorios = new Tarefas(7, idCliente, "Acessorios", false, false, "");
+        Tarefa acessorios = new Tarefa(7, idCliente, "Acessorios", false, false, "");
         listTarefas.add(acessorios);
-        Tarefas teste = new Tarefas(8 ,idCliente, "Teste fun. da moto", false, false, "");
+        Tarefa teste = new Tarefa(8 ,idCliente, "Teste fun. da moto", false, false, "");
         listTarefas.add(teste);
-        Tarefas manual = new Tarefas(9, idCliente, "Manual Preenchido", false, false, "");
+        Tarefa manual = new Tarefa(9, idCliente, "Manual Preenchido", false, false, "");
         listTarefas.add(manual);
-        Tarefas placa = new Tarefas(10 ,idCliente, "Placa", false, false, "");
+        Tarefa placa = new Tarefa(10 ,idCliente, "Placa", false, false, "");
         listTarefas.add(placa);
-        Tarefas termoEntrega = new Tarefas(11 ,idCliente, "Termo de Entrega", false, false, "");
+        Tarefa termoEntrega = new Tarefa(11 ,idCliente, "Termo de Entrega", false, false, "");
         listTarefas.add(termoEntrega);
 
         return listTarefas;
