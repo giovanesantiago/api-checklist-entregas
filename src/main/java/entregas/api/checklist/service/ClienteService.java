@@ -1,8 +1,10 @@
 package entregas.api.checklist.service;
 
+import entregas.api.checklist.dto.DtoCliente;
 import entregas.api.checklist.model.Cliente;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.List;
@@ -13,7 +15,8 @@ public class ClienteService {
     private static final List<Cliente> listaClientes = new ArrayList<>();
 
     static {
-        Cliente cliente1 = new Cliente(1L, "Giovane", "Meteor Fireball Red", "005858");
+        Cliente cliente1 = new Cliente(1L, "Giovane Santiago",
+                "Meteor Fireball Red", "005858");
         Cliente cliente2 = new Cliente(2L, "Ana Clara", "Himalayan Preta", "505050");
 
         listaClientes.add(cliente1);
@@ -49,7 +52,8 @@ public class ClienteService {
     }
 
     // Editar cliente
-    public Cliente editCliente(Long idCliente, Cliente client) {
+    public String editCliente(Long idCliente, DtoCliente client) {
+        System.out.println(client);
         Cliente cliente = findById(idCliente);
         int index = listaClientes.indexOf(cliente);
         if (cliente.getId().equals(client.getId())){
@@ -59,17 +63,24 @@ public class ClienteService {
                 cliente.setMoto(client.getMoto());
             if (!cliente.getChassi().equals(client.getChassi()))
                 cliente.setChassi(client.getChassi());
-            if(cliente.getDataVenda() != null){
-                if (!cliente.getDataVenda().equals(client.getDataVenda())) {
-                    cliente.setDataEntrega(client.getDataEntrega());
+            if (client.getDataVenda() != null) {
+                cliente.setDataVenda(LocalDate.parse(client.getDataVenda(),
+                        DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                if (client.getDataEntrega() != null) {
+                    cliente.setDataEntrega(LocalDate.parse(client.getDataEntrega(),
+                            DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                }else {
                     cliente.setDataEntrega(cliente.getDataVenda().plusDays(10));
                 }
             }
-        }
 
+
+        }
+        System.out.println(cliente);
         listaClientes.remove(index);
         listaClientes.add(cliente);
-        return cliente;
+
+        return "ok";
     }
 
     // Retornar Clientes

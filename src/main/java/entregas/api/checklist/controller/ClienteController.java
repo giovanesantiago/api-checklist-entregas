@@ -1,12 +1,14 @@
 package entregas.api.checklist.controller;
 
 
+import entregas.api.checklist.dto.DtoCliente;
 import entregas.api.checklist.model.Cliente;
 import entregas.api.checklist.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 @RestController
@@ -15,6 +17,7 @@ public class ClienteController {
 
     @Autowired
     ClienteService service;
+    DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @GetMapping
     public ResponseEntity<ArrayList<Cliente>> findAll() {
@@ -23,9 +26,17 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> findById(@PathVariable Long id) {
+    public ResponseEntity<DtoCliente> findById(@PathVariable Long id) {
         Cliente cliente = service.findById(id);
-        return ResponseEntity.ok(cliente);
+        DtoCliente clienteDto;
+        if(cliente.getDataVenda() != null) {
+            clienteDto = new DtoCliente(cliente.getId(), cliente.getNome(), cliente.getMoto(),
+                    cliente.getChassi(), cliente.getDataVenda().format(formatador), cliente.getDataEntrega().format(formatador));
+        }else {
+            clienteDto = new DtoCliente(cliente.getId(), cliente.getNome(), cliente.getMoto(),
+                    cliente.getChassi());
+        }
+        return ResponseEntity.ok(clienteDto);
     }
 
     @PostMapping("/addCliente")
@@ -41,7 +52,8 @@ public class ClienteController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editCliente(@PathVariable Long id, @RequestBody Cliente cliente){
+    public String editCliente(@PathVariable("id") Long id, @RequestBody DtoCliente cliente){
+
         service.editCliente(id, cliente);
         return "ok";
     }

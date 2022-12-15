@@ -1,6 +1,7 @@
 package entregas.api.checklist;
 import static org.junit.jupiter.api.Assertions.*;
 
+import entregas.api.checklist.dto.DtoCliente;
 import entregas.api.checklist.model.Cliente;
 import entregas.api.checklist.service.ClienteService;
 import org.junit.jupiter.api.Test;
@@ -179,9 +180,12 @@ public class TestCliente {
         assertEquals(resultado, "ok");
         assertEquals(service.findAll().size(), 3);
 
+        DtoCliente cliente1Dto = new DtoCliente(3L, "Cliente1", "Moto 1", "005566");
+        DtoCliente cliente2Dto = new DtoCliente(4L, "Cliente2", "Moto 2", "000067");
+
         // Editando nome
-        cliente1.setNome("NovoNome");
-        service.editCliente(3L, cliente1);
+        cliente1Dto.setNome("NovoNome");
+        service.editCliente(3L, cliente1Dto);
         // Testando Edição
         assertEquals(service.findById(3L).getNome(), "NovoNome");
         // Verificando se so editou o nome
@@ -191,8 +195,8 @@ public class TestCliente {
         assertNull(service.findById(3L).getDataEntrega());
 
         // Editando moto
-        cliente1.setMoto("moto 2");
-        service.editCliente(3L, cliente1);
+        cliente1Dto.setMoto("moto 2");
+        service.editCliente(3L, cliente1Dto);
         // Testando Edição
         assertEquals(service.findById(3L).getMoto(), "moto 2");
         // Verificando se so editou a moto
@@ -202,8 +206,8 @@ public class TestCliente {
         assertNull(service.findById(3L).getDataEntrega());
 
         // Editando chassi
-        cliente1.setChassi("11111");
-        service.editCliente(3L, cliente1);
+        cliente1Dto.setChassi("11111");
+        service.editCliente(3L, cliente1Dto);
         // Testando Edição
         assertEquals(service.findById(3L).getChassi(), "11111");
         // Verificando se so editou a chassi

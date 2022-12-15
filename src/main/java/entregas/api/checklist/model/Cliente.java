@@ -1,5 +1,7 @@
 package entregas.api.checklist.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -10,9 +12,13 @@ public class Cliente {
     private String nome;
     private String moto;
     private String chassi;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataVenda;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataEntrega;
     private ArrayList<Tarefa> tarefas;
+
+
 
     public Cliente() {
     }
@@ -23,6 +29,33 @@ public class Cliente {
         this.moto = moto;
         this.chassi = chassi;
         this.tarefas = this.createListaTarefas(id);
+    }
+
+    public Cliente(Long id, String nome, String moto, String chassi, LocalDate dataVenda) {
+        this.id = id;
+        this.nome = nome;
+        this.moto = moto;
+        this.chassi = chassi;
+        this.dataVenda = dataVenda;
+    }
+
+    public Cliente(Long id, String nome, String moto, String chassi, LocalDate dataVenda, LocalDate dataEntrega) {
+        this.id = id;
+        this.nome = nome;
+        this.moto = moto;
+        this.chassi = chassi;
+        this.dataVenda = dataVenda;
+        this.dataEntrega = dataEntrega;
+    }
+
+    public Cliente(Long id, String nome, String moto, String chassi, LocalDate dataVenda, LocalDate dataEntrega, ArrayList<Tarefa> tarefas) {
+        this.id = id;
+        this.nome = nome;
+        this.moto = moto;
+        this.chassi = chassi;
+        this.dataVenda = dataVenda;
+        this.dataEntrega = dataEntrega;
+        this.tarefas = tarefas;
     }
 
     public Long getId() {
