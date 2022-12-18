@@ -52,7 +52,7 @@ public class ClienteController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editCliente(@PathVariable("id") Long id, @RequestBody DtoCliente cliente){
+    public String editCliente(@PathVariable("id") Long id, @RequestBody Cliente cliente){
 
         service.editCliente(id, cliente);
         return "ok";

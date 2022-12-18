@@ -52,7 +52,7 @@ public class ClienteService {
     }
 
     // Editar cliente
-    public String editCliente(Long idCliente, DtoCliente client) {
+    public String editCliente(Long idCliente, Cliente client) {
         System.out.println(client);
         Cliente cliente = findById(idCliente);
         int index = listaClientes.indexOf(cliente);
@@ -64,11 +64,9 @@ public class ClienteService {
             if (!cliente.getChassi().equals(client.getChassi()))
                 cliente.setChassi(client.getChassi());
             if (client.getDataVenda() != null) {
-                cliente.setDataVenda(LocalDate.parse(client.getDataVenda(),
-                        DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                cliente.setDataVenda(client.getDataVenda());
                 if (client.getDataEntrega() != null) {
-                    cliente.setDataEntrega(LocalDate.parse(client.getDataEntrega(),
-                            DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                    cliente.setDataEntrega(client.getDataEntrega());
                 }else {
                     cliente.setDataEntrega(cliente.getDataVenda().plusDays(10));
                 }

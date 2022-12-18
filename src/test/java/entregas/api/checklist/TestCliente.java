@@ -174,11 +174,7 @@ public class TestCliente {
         // Testanto pesquisa
         assertEquals(clientePesquisa.getNome(), cliente1.getNome());
 
-        // Deletando Cliente
-        String resultado = service.deleteById(4L);
-        // Testando delete
-        assertEquals(resultado, "ok");
-        assertEquals(service.findAll().size(), 3);
+
 
         DtoCliente cliente1Dto = new DtoCliente(3L, "Cliente1", "Moto 1", "005566");
         DtoCliente cliente2Dto = new DtoCliente(4L, "Cliente2", "Moto 2", "000067");
@@ -217,9 +213,18 @@ public class TestCliente {
         assertNull(service.findById(3L).getDataEntrega());
 
 
+        // Deletando Cliente
+        String resultado = service.deleteById(4L);
+        String resultado2 = service.deleteById(3L);
+        // Testando delete
+        assertEquals(resultado, "ok");
+        assertEquals(resultado2, "ok");
+        assertEquals(service.findAll().size(), 2);
+
         System.out.println(cliente1.toString());
         System.out.println(cliente2.toString());
         assertNotEquals(cliente1, cliente2);
+
     }
 
 }
