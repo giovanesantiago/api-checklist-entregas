@@ -40,22 +40,22 @@ public class ClienteController {
     }
 
     @PostMapping("/addCliente")
-    public String createClient(@RequestBody Cliente cliente) {
+    public ResponseEntity<Cliente> createClient(@RequestBody Cliente cliente) {
         service.createCliente(cliente);
-        return "ok";
+        return ResponseEntity.ok(cliente);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteById(@PathVariable Long id) {
+    public ResponseEntity<Long> deleteById(@PathVariable Long id) {
         service.deleteById(id);
-        return "ok";
+        return ResponseEntity.ok(id);
     }
 
     @PostMapping("/edit/{id}")
-    public String editCliente(@PathVariable("id") Long id, @RequestBody Cliente cliente){
+    public ResponseEntity<Cliente> editCliente(@PathVariable("id") Long id, @RequestBody Cliente cliente){
 
         service.editCliente(id, cliente);
-        return "ok";
+        return ResponseEntity.ok(cliente);
     }
 
 

@@ -1,6 +1,10 @@
 package entregas.api.checklist.model;
 
+
+
+
 public class Tarefa {
+
 
     private int idTarefa;
     private Long idCliente;

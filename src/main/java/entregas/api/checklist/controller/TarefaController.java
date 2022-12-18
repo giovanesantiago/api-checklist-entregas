@@ -29,12 +29,12 @@ public class TarefaController {
     }
 
     @PostMapping("/editTarefa/{idCliente}/{idTarefa}")
-    public String editTarefa(@PathVariable("idTarefa") int idTarefa,
+    public ResponseEntity<Tarefa> editTarefa(@PathVariable("idTarefa") int idTarefa,
                              @PathVariable("idCliente") Long idCliente,
                              @RequestBody Tarefa newTarefa){
 
         service.editTarefa(idTarefa, idCliente, newTarefa);
-        return "ok";
+        return ResponseEntity.ok(newTarefa);
     }
 
 }
