@@ -2,6 +2,7 @@ package entregas.api.checklist.service;
 
 import entregas.api.checklist.dto.DtoCliente;
 import entregas.api.checklist.model.Cliente;
+import entregas.api.checklist.model.Tarefa;
 import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
@@ -86,6 +87,15 @@ public class ClienteService {
         return new ArrayList<>(listaClientes);
     }
 
-
+    public String atualizarTarefas(Long idCliente, int idTarefa, Tarefa tarefa) {
+        Cliente cliente = findById(idCliente);
+        int index = listaClientes.indexOf(cliente);
+        Tarefa tarefaEdit = tarefa;
+        listaClientes.get(index).getTarefas().get(idTarefa - 1).setNome(tarefaEdit.getNome());
+        listaClientes.get(index).getTarefas().get(idTarefa - 1).setProcesso(tarefaEdit.getProcesso());
+        listaClientes.get(index).getTarefas().get(idTarefa - 1).setFinalizado(tarefaEdit.getFinalizado());
+        listaClientes.get(index).getTarefas().get(idTarefa - 1).setObs(tarefaEdit.getObs());
+        return "ok";
+    }
 
 }

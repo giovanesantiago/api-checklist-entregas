@@ -34,6 +34,7 @@ public class TarefaService {
             if (!tarefa.getObs().equals(newTarefa.getObs()))
                 tarefa.setObs(newTarefa.getObs());
         }
+        service.atualizarTarefas(idCliente, idTarefa, tarefa);
 
     }
 
