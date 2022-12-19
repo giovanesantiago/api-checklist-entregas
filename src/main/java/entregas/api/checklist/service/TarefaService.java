@@ -2,6 +2,7 @@ package entregas.api.checklist.service;
 
 import entregas.api.checklist.model.Cliente;
 import entregas.api.checklist.model.Tarefa;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,7 +11,8 @@ import java.util.ArrayList;
 public class TarefaService {
 
 
-    ClienteService service = new ClienteService();
+    @Autowired
+    ClienteService service;
 
     // pesquisar tarefa por id
     public Tarefa findById(int idTarefa, Long idCliente) {

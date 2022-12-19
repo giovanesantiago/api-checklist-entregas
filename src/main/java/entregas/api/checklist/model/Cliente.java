@@ -2,12 +2,19 @@ package entregas.api.checklist.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-
+@Entity
+@Table(name = "tab_cliente")
 public class Cliente {
 
+    @Id
+    @Column(name = "idCliente")
     private Long id;
     private String nome;
     private String moto;

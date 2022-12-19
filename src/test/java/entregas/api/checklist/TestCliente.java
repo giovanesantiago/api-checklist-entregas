@@ -162,7 +162,7 @@ public class TestCliente {
         service.createCliente(cliente1);
         service.createCliente(cliente2);
         // Listando clientes
-        ArrayList<Cliente> listCliente = service.findAll();
+        List<Cliente> listCliente = service.findAll();
         // Testando lista de cadastro
         assertEquals(listCliente.get(0).getId(), 1L);
         assertEquals(listCliente.get(1).getId(), 2L);
@@ -176,12 +176,12 @@ public class TestCliente {
 
 
 
-        DtoCliente cliente1Dto = new DtoCliente(3L, "Cliente1", "Moto 1", "005566");
-        DtoCliente cliente2Dto = new DtoCliente(4L, "Cliente2", "Moto 2", "000067");
+        Cliente cliente1 = new Cliente(3L, "Cliente1", "Moto 1", "005566");
+        Cliente cliente2 = new Cliente(4L, "Cliente2", "Moto 2", "000067");
 
         // Editando nome
-        cliente1Dto.setNome("NovoNome");
-        service.editCliente(3L, cliente1Dto);
+        cliente1.setNome("NovoNome");
+        service.editCliente(3L, cliente1);
         // Testando Edição
         assertEquals(service.findById(3L).getNome(), "NovoNome");
         // Verificando se so editou o nome
@@ -191,8 +191,8 @@ public class TestCliente {
         assertNull(service.findById(3L).getDataEntrega());
 
         // Editando moto
-        cliente1Dto.setMoto("moto 2");
-        service.editCliente(3L, cliente1Dto);
+        cliente1.setMoto("moto 2");
+        service.editCliente(3L, cliente1);
         // Testando Edição
         assertEquals(service.findById(3L).getMoto(), "moto 2");
         // Verificando se so editou a moto
@@ -202,8 +202,8 @@ public class TestCliente {
         assertNull(service.findById(3L).getDataEntrega());
 
         // Editando chassi
-        cliente1Dto.setChassi("11111");
-        service.editCliente(3L, cliente1Dto);
+        cliente1.setChassi("11111");
+        service.editCliente(3L, cliente1);
         // Testando Edição
         assertEquals(service.findById(3L).getChassi(), "11111");
         // Verificando se so editou a chassi

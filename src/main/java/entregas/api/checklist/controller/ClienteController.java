@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/cliente")
@@ -20,8 +21,8 @@ public class ClienteController {
     DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @GetMapping
-    public ResponseEntity<ArrayList<Cliente>> findAll() {
-        ArrayList<Cliente> clienteList = service.findAll();
+    public ResponseEntity<List<Cliente>> findAll() {
+        List<Cliente> clienteList = service.findAll();
         return ResponseEntity.ok(clienteList);
     }
 
