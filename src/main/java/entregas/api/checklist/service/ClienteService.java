@@ -39,6 +39,8 @@ public class ClienteService {
     // Editar cliente
     public String editCliente(Long idCliente, Cliente client) {
         Cliente cliente = findById(idCliente);
+        System.out.println(cliente.toString());
+        System.out.println(client.toString());
         if (cliente.getId().equals(client.getId())){
             if (!cliente.getNome().equals(client.getNome()))
                 cliente.setNome(client.getNome());

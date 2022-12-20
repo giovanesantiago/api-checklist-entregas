@@ -23,7 +23,7 @@ public class TarefaController {
         return ResponseEntity.ok(tarefasList);
     }
 
-    @GetMapping("/{idCliente}/{idSequencia}/{idTarefa}")
+    @GetMapping("/{idTarefa}/{idSequencia}/{idCliente}")
     public ResponseEntity<Tarefa> findByOne(@PathVariable("idTarefa") Integer idTarefa,
                                            @PathVariable("idSequencia") Integer idSequencia,
                                            @PathVariable("idCliente") Long idCLiente){
