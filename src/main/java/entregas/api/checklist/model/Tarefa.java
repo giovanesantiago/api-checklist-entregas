@@ -1,44 +1,53 @@
 package entregas.api.checklist.model;
 
 
+import javax.persistence.*;
 
-
+@Entity
+@Table(name = "tab_tarefa")
 public class Tarefa {
 
-
-    private int idTarefa;
-    private Long idCliente;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idTarefa;
+    private Integer idSequencia;
     private String nome;
     private Boolean processo;
     private Boolean finalizado;
     private String obs;
 
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
+    private Cliente cliente;
+
     public Tarefa() {
     }
 
-    public Tarefa(int idTarefa, Long idCliente, String nome, Boolean processo, Boolean finalizado, String obs) {
-        this.idTarefa = idTarefa;
-        this.idCliente = idCliente;
+
+
+    public Tarefa(Integer idSequencia, String nome, Boolean processo, Boolean finalizado, String obs, Cliente cliente) {
+        this.idSequencia = idSequencia;
         this.nome = nome;
         this.processo = processo;
         this.finalizado = finalizado;
         this.obs = obs;
+        this.cliente = cliente;
     }
 
-    public int getIdTarefa() {
+    public Integer getIdTarefa() {
         return idTarefa;
     }
 
-    public void setIdTarefa(int idTarefa) {
+    public void setIdTarefa(Integer idTarefa) {
         this.idTarefa = idTarefa;
     }
 
-    public Long getIdCliente() {
-        return idCliente;
+    public Integer getIdSequencia() {
+        return idSequencia;
     }
 
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
+    public void setIdSequencia(Integer idSequencia) {
+        this.idSequencia = idSequencia;
     }
 
     public String getNome() {
@@ -73,15 +82,24 @@ public class Tarefa {
         this.obs = obs;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     @Override
     public String toString() {
-        return "Tarefas{" +
+        return "Tarefa{" +
                 "idTarefa=" + idTarefa +
-                ", idCliente=" + idCliente +
+                ", idSequencia=" + idSequencia +
                 ", nome='" + nome + '\'' +
                 ", processo=" + processo +
                 ", finalizado=" + finalizado +
                 ", obs='" + obs + '\'' +
+                ", cliente=" + cliente +
                 '}';
     }
 }

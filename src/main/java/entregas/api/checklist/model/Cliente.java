@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 @Entity
 @Table(name = "tab_cliente")
@@ -23,7 +22,6 @@ public class Cliente {
     private LocalDate dataVenda;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataEntrega;
-    private ArrayList<Tarefa> tarefas;
 
 
 
@@ -35,7 +33,7 @@ public class Cliente {
         this.nome = nome;
         this.moto = moto;
         this.chassi = chassi;
-        this.tarefas = this.createListaTarefas(id);
+        /*this.tarefas = this.createListaTarefas(id);*/
     }
 
     public Cliente(Long id, String nome, String moto, String chassi, LocalDate dataVenda) {
@@ -55,15 +53,7 @@ public class Cliente {
         this.dataEntrega = dataEntrega;
     }
 
-    public Cliente(Long id, String nome, String moto, String chassi, LocalDate dataVenda, LocalDate dataEntrega, ArrayList<Tarefa> tarefas) {
-        this.id = id;
-        this.nome = nome;
-        this.moto = moto;
-        this.chassi = chassi;
-        this.dataVenda = dataVenda;
-        this.dataEntrega = dataEntrega;
-        this.tarefas = tarefas;
-    }
+
 
     public Long getId() {
         return id;
@@ -113,13 +103,7 @@ public class Cliente {
         this.dataEntrega = dataEntrega;
     }
 
-    public ArrayList<Tarefa> getTarefas() {
-        return tarefas;
-    }
 
-    public void setTarefas(ArrayList<Tarefa> tarefas) {
-        this.tarefas = tarefas;
-    }
 
     @Override
     public String toString() {
@@ -130,37 +114,8 @@ public class Cliente {
                 ", chassi=" + chassi +
                 ", dataVenda=" + dataVenda +
                 ", dataEntrega=" + dataEntrega +
-                ", tarefas=" + tarefas +
                 '}';
     }
 
 
-    // Metodo para criar lista de Tarefas assim que criar um usuario
-    public ArrayList<Tarefa> createListaTarefas(Long idCliente) {
-        ArrayList<Tarefa> listTarefas = new ArrayList<Tarefa>();
-        Tarefa prosposta = new Tarefa(1, idCliente, "Proposta", false, false, "");
-        listTarefas.add(prosposta);
-        Tarefa notaFiscal = new Tarefa(2 ,idCliente, "Nota Fiscal", false, false, "");
-        listTarefas.add(notaFiscal);
-        Tarefa solitacaoEstoque = new Tarefa(3 ,idCliente, "Solitacao Estoque", false, false, "");
-        listTarefas.add(solitacaoEstoque);
-        Tarefa bimEgravame = new Tarefa(4, idCliente, "Bim e Gravame", false, false, "");
-        listTarefas.add(bimEgravame);
-        Tarefa motoLoja = new Tarefa(5 ,idCliente, "Moto na Loja", false, false, "");
-        listTarefas.add(motoLoja);
-        Tarefa bateria = new Tarefa(6 ,idCliente, "Bateria Ativa", false, false, "");
-        listTarefas.add(bateria);
-        Tarefa acessorios = new Tarefa(7, idCliente, "Acessorios", false, false, "");
-        listTarefas.add(acessorios);
-        Tarefa teste = new Tarefa(8 ,idCliente, "Teste fun. da moto", false, false, "");
-        listTarefas.add(teste);
-        Tarefa manual = new Tarefa(9, idCliente, "Manual Preenchido", false, false, "");
-        listTarefas.add(manual);
-        Tarefa placa = new Tarefa(10 ,idCliente, "Placa", false, false, "");
-        listTarefas.add(placa);
-        Tarefa termoEntrega = new Tarefa(11 ,idCliente, "Termo de Entrega", false, false, "");
-        listTarefas.add(termoEntrega);
-
-        return listTarefas;
-    }
 }

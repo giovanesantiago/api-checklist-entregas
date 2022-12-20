@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/tarefas")
@@ -15,25 +16,28 @@ public class TarefaController {
     @Autowired
     TarefaService service;
 
+
     @GetMapping("/{id}")
-    public ResponseEntity<ArrayList<Tarefa>> findAll(@PathVariable Long id) {
-        ArrayList<Tarefa> tarefasList = service.findAll(id);
+    public ResponseEntity<List<Tarefa>> findAll(@PathVariable Long id) {
+        List<Tarefa> tarefasList = service.findByAllCliente(id);
         return ResponseEntity.ok(tarefasList);
     }
 
-    @GetMapping("/{idCliente}/{idTarefa}")
-    public ResponseEntity<Tarefa> findById(@PathVariable("idTarefa") int idTarefa,
+    @GetMapping("/{idCliente}/{idSequencia}/{idTarefa}")
+    public ResponseEntity<Tarefa> findByOne(@PathVariable("idTarefa") Integer idTarefa,
+                                           @PathVariable("idSequencia") Integer idSequencia,
                                            @PathVariable("idCliente") Long idCLiente){
-        Tarefa tarefa = service.findById(idTarefa, idCLiente);
+        Tarefa tarefa = service.findByOne(idTarefa, idSequencia, idCLiente);
         return ResponseEntity.ok(tarefa);
     }
 
-    @PostMapping("/editTarefa/{idCliente}/{idTarefa}")
-    public ResponseEntity<Tarefa> editTarefa(@PathVariable("idTarefa") int idTarefa,
-                             @PathVariable("idCliente") Long idCliente,
-                             @RequestBody Tarefa newTarefa){
+    @PostMapping("/editTarefa//{idTarefa}/{idSequencia}/{idCliente}")
+    public ResponseEntity<Tarefa> editTarefa(@PathVariable("idTarefa") Integer idTarefa,
+                                             @PathVariable("idSequencia") Integer idSequencia,
+                                             @PathVariable("idCliente") Long idCLiente,
+                                             @RequestBody Tarefa newTarefa){
 
-        service.editTarefa(idTarefa, idCliente, newTarefa);
+        service.editTarefa(idTarefa, idSequencia, idCLiente, newTarefa);
         return ResponseEntity.ok(newTarefa);
     }
 

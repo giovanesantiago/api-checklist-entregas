@@ -20,6 +20,13 @@ public class ClienteController {
     ClienteService service;
     DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+
+    @PostMapping("/addCliente")
+    public ResponseEntity<Cliente> createClient(@RequestBody Cliente cliente) {
+        service.createCliente(cliente);
+        return ResponseEntity.ok(cliente);
+    }
+
     @GetMapping
     public ResponseEntity<List<Cliente>> findAll() {
         List<Cliente> clienteList = service.findAll();
@@ -40,11 +47,7 @@ public class ClienteController {
         return ResponseEntity.ok(clienteDto);
     }
 
-    @PostMapping("/addCliente")
-    public ResponseEntity<Cliente> createClient(@RequestBody Cliente cliente) {
-        service.createCliente(cliente);
-        return ResponseEntity.ok(cliente);
-    }
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Long> deleteById(@PathVariable Long id) {

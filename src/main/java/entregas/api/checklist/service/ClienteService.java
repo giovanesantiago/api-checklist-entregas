@@ -1,16 +1,11 @@
 package entregas.api.checklist.service;
 
-import entregas.api.checklist.dto.DtoCliente;
 import entregas.api.checklist.exception.ClienteNotFoundException;
 import entregas.api.checklist.model.Cliente;
-import entregas.api.checklist.model.Tarefa;
 import entregas.api.checklist.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -18,22 +13,14 @@ public class ClienteService {
 
     @Autowired
     ClienteRepository clienteRepository;
+    @Autowired
+    ListTarefas listTarefas;
 
-    private static final List<Cliente> listaClientes = new ArrayList<>();
-
-    static {
-        Cliente cliente1 = new Cliente(1L, "Giovane Santiago",
-                "Meteor Fireball Red", "005858");
-        Cliente cliente2 = new Cliente(2L, "Ana Clara", "Himalayan Preta", "505050");
-        listaClientes.add(cliente1);
-        listaClientes.add(cliente2);
-    }
 
     // Adicionar novo Cliente
     public String createCliente(Cliente cliente) {
-        Cliente clienteAdd = new Cliente(cliente.getId(), cliente.getNome(),
-                cliente.getMoto(), cliente.getChassi());
         clienteRepository.save(cliente);
+        listTarefas.createListaTarefas(cliente);
         return "ok";
     }
 
@@ -44,6 +31,7 @@ public class ClienteService {
 
     // Deletar Cliente
     public String deleteById(Long idCliente) {
+        listTarefas.deleteTarefasCliente(idCliente);
         clienteRepository.deleteById(idCliente);
         return "nao ok";
     }
@@ -77,15 +65,6 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    public String atualizarTarefas(Long idCliente, int idTarefa, Tarefa tarefa) {
-        Cliente cliente = findById(idCliente);
-        int index = listaClientes.indexOf(cliente);
-        Tarefa tarefaEdit = tarefa;
-        listaClientes.get(index).getTarefas().get(idTarefa - 1).setNome(tarefaEdit.getNome());
-        listaClientes.get(index).getTarefas().get(idTarefa - 1).setProcesso(tarefaEdit.getProcesso());
-        listaClientes.get(index).getTarefas().get(idTarefa - 1).setFinalizado(tarefaEdit.getFinalizado());
-        listaClientes.get(index).getTarefas().get(idTarefa - 1).setObs(tarefaEdit.getObs());
-        return "ok";
-    }
+
 
 }
